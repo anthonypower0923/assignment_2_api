@@ -9,9 +9,21 @@ async function addFavourite(req, res) {
     res.status(201).json({ success: true, msg: 'Movie successfully added.'});
 }
 
-router.get('/favourites', asyncHandler (async (req, res) => {
+router.get('/', asyncHandler (async (req, res) => {
     const favourites = await FavouriteMovies.find();
     res.status(200).json(favourites);
+}));
+
+router.delete('/:id', asyncHandler ( async (req, res) => {
+    if (req.body.id) delete req.body.id;
+    const result = await FavouriteMovies.deleteOne({
+        id: req.params.id,
+    });
+    if (result.deletedCount) {
+        res.status(204).json({code: 204, msg: 'Movie successfully deleted' });
+    } else {
+        res.status(404).json({ code: 404, msg: 'Unable to find movie' });
+    }
 }));
 
 router.post('/', asyncHandler(async (req, res) => {
