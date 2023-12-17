@@ -6,7 +6,7 @@ import movies from './movies';
 import testMovies from './testMovies';
 import User from '../api/users/userModel';
 import Movie from '../api/movies/movieModel';
-import FavouriteMovies from '../api/movies/favouriteMoviesModel';
+import FavouriteMovies from '../api/favouriteMovies/favouriteMoviesModel';
 
 async function main() {
     if (process.env.NODE_ENV !== 'development') {
@@ -17,14 +17,13 @@ async function main() {
     // Drop collections
     await User.collection.drop().catch(err => console.log('User collection not found'));
     await Movie.collection.drop().catch(err => console.log('Movie collection not found'));
-    await FavouriteMovies.collection.drop().catch(err => console.log('Movie collection not found'));
+    await FavouriteMovies.collection.drop().catch(err => console.log('Favourit Movies collection not found'));
     await User.create(users);
     await Movie.create(movies);
     await FavouriteMovies.create()
     console.log('Database initialised');
     console.log(`${users.length} users loaded`);
     console.log(`${movies.length} movies loaded`);
-    console.log(`${testMovies.length} movies loaded`);
     await mongoose.disconnect();
 }
 

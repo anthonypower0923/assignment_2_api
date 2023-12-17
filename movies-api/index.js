@@ -7,6 +7,7 @@ import './db';
 import defaultErrHandler from './errHandler'
 import moviesRouter from './api/movies';   //import movies router
 import authenticate from './authenticate';
+import favouritesRouter from './api/favouriteMovies';
 
 dotenv.config();
 
@@ -18,6 +19,7 @@ app.use(express.json());
 app.use('/api/users', usersRouter);
 app.use('/api/movies',  moviesRouter);
 app.use('/tmdb/upcoming',  moviesRouter);
+app.use('/api/favouriteMovies', favouritesRouter);
 app.use(defaultErrHandler);
 
 app.listen(port, () => {
