@@ -3,10 +3,11 @@ dotenv.config();
 import mongoose from 'mongoose';
 import users from './users';
 import movies from './movies';
-import testMovies from './testMovies';
+import shows from './shows';
 import User from '../api/users/userModel';
 import Movie from '../api/movies/movieModel';
 import FavouriteMovies from '../api/favouriteMovies/favouriteMoviesModel';
+import Show from '../api/shows/showModel';
 
 async function main() {
     if (process.env.NODE_ENV !== 'development') {
@@ -17,13 +18,16 @@ async function main() {
     // Drop collections
     await User.collection.drop().catch(err => console.log('User collection not found'));
     await Movie.collection.drop().catch(err => console.log('Movie collection not found'));
-    await FavouriteMovies.collection.drop().catch(err => console.log('Favourit Movies collection not found'));
+    await FavouriteMovies.collection.drop().catch(err => console.log('Favourite Movies collection not found'));
+    await FavouriteMovies.collection.drop().catch(err => console.log('Shows collection not found'));
     await User.create(users);
     await Movie.create(movies);
     await FavouriteMovies.create()
+    await Show.create(shows);
     console.log('Database initialised');
     console.log(`${users.length} users loaded`);
     console.log(`${movies.length} movies loaded`);
+    console.log(`${shows.length} shows loaded`);
     await mongoose.disconnect();
 }
 

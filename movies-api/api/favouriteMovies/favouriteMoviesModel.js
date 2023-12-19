@@ -3,9 +3,10 @@ import mongoose from 'mongoose';
 const Schema = mongoose.Schema;
 
 const FovouritesSchema = new Schema({
-    adult: { type: Boolean },
+        adult: { type: Boolean },
         backdrop_path: { type: String },
-        id: { type: Number, required: true, unique: true },
+        genre_ids: {type: Array},
+        id: { type: Number, unique: true },
         original_language: { type: String },
         original_title: { type: String },
         overview: { type: String },
