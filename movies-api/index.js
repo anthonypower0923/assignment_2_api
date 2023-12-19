@@ -23,7 +23,7 @@ app.use('/api/movies',  moviesRouter);
 app.use('/tmdb/upcoming',  moviesRouter);
 app.use('/api/favouriteMovies', authenticate, favouritesRouter);
 app.use('/api/shows' , showsRouter)
-app.use('/api/favouriteshows' , favouriteShowsRouter)
+app.use('/api/favouriteshows', authenticate , favouriteShowsRouter)
 app.use(defaultErrHandler);
 
 app.listen(port, () => {
